@@ -76,6 +76,10 @@ export default [
     } // 1.可以重定向到路径 2.也可以重定向到有个命名路由 3.可以是一个方法,动态返回重定向目标路径
   },
   {
+    path:'/store',
+    component:()=>import('@/views/store.vue')
+  },
+  {
     path: '*',
     component: () => import('@/views/error_404.vue')
   }
