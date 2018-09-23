@@ -1,6 +1,7 @@
 const state = {
   userName: 'Rui.Leo',
-  userName2: 'Leo2'
+  userName2: 'Leo2',
+  userName3: 'RuiSiZheng'
 }
 const getters = {
   firstLetter: (state) => {
@@ -8,10 +9,18 @@ const getters = {
   }
 }
 const mutations = {
-  //
+  SET_USER_NAME (state, params) {
+    state.userName3 = params
+  }
 }
 const actions = {
-  //
+  updateAppName ({ commit, state, rootSate, dispatch }) {
+    //
+    dispatch('xxx', '') // 提交模块内的action
+  },
+  xxx () {
+    //
+  }
 }
 
 export default {
@@ -19,5 +28,8 @@ export default {
   state,
   getters,
   mutations,
-  actions
+  actions,
+  modules: {
+    //
+  }
 }
