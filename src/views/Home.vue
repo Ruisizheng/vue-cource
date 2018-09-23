@@ -5,8 +5,11 @@
     <button @click="handelclick('back')"> 返回上一页</button>
     <button @click="handelclick('push')"> 跳转页面</button>
      <button @click="handelclick('replace')"> 替换页面</button>
+
    
      <b>{{ food }}</b>
+
+     <button @click="getInfo">请求数据</button>
      
   </div>
 </template>
@@ -14,6 +17,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
+import {getUserInfo} from '@/api/user'
 
 export default {
   name: 'home',
@@ -59,6 +63,14 @@ export default {
      else if (type == 'replace') this.$router.replace({
        name:'about'
      })
+   },
+   getInfo(){
+     // 此处请求 对axios 封装后的数据请求，返回Promise 对象的处理
+      getUserInfo({ userId:21 }).then(res=>console.log('服务返回res： =>'+res)).catch(
+        error => {
+          console.log('服务异常Home.vue页面：'+error)
+        }
+      )
    }
   }
 }
