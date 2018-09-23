@@ -10,6 +10,9 @@ const mutations = {
   },
   SET_APP_VERSION (state) { // 给state 添加新的属性
     Vue.set(state, 'appVersion', 'v2.0')
+  },
+  SET_STATE_VALUE (state, value) {
+    state.stateValue = value
   }
 }
 export default mutations

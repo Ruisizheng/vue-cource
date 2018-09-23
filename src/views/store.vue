@@ -18,6 +18,9 @@
 
             <button @click="regModules">动态注册模板</button>
             <p v-for="(li,index) in todoList " :key="index">{{li}} </p>
+
+            <a-input :value="stateValue" @input="handelStateValueChange"/>
+            <p>{{stateValue}}</p>
     </div>
 </template>
 <script>
@@ -49,8 +52,17 @@ export default {
          ...mapState({
            appName3:state => state.appName3,
            appVersion: state => state.appVersion,
-           todoList: state => state.user.todo? state.user.todo.todoList:[]
+           todoList: state => state.user.todo? state.user.todo.todoList:[],
+         //  stateValue:state =>state.stateValue  // vux双向绑定 方法一
          }),
+        stateValue:{          // vux 双向绑定 方法二
+           get(){
+               return this.$store.state.stateValue
+           },
+           set(value){
+            this.SET_STATE_VALUE(val)
+           }
+        } ,
         ...mapState('user',{
             userName2:state => state.userName2,  // 获取模块内的state值
             userName3:state => state.userName3
@@ -76,7 +88,8 @@ export default {
     },
     methods:{
       ...mapMutations([
-          'SET_APP_NAME2'
+          'SET_APP_NAME2',
+          'SET_STATE_VALUE'
       ]) ,
        ...mapMutations('user',[
           'SET_USER_NAME'
@@ -108,6 +121,9 @@ export default {
               '学习actions'
           ]
         }})
+      },
+      handelStateValueChange(val){
+         this.SET_STATE_VALUE(val)
       }
     }
 }
